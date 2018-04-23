@@ -25,7 +25,7 @@ def main (name=None):
   
 main()
 ```
-see `examples` for more info.
+see `examples` and `docs` for more info.
 
 ## documentation
 see `docs` for documentation.
