@@ -3,6 +3,6 @@ Version 0.1          First version, original commit.
 Version 0.2          Second version, documentation update.
 Version 0.3          Current version, documentation update.
 
-Version 1.0 		 Breakthrough, examples and test suite update
-Version 1.2 		 Update source, added support for @cookie.crumble
-
+Version 1.0 		 Breakthrough, examples and test suite update       [stable release]
+Version 1.2 		 Update source, added support for @cookie.crumble   [beta release]
+ 
