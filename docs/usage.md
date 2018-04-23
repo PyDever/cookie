@@ -24,9 +24,9 @@ $ python test.py -n Kaleb --age 15
 $ python test.py -n Kaleb -a 15
 ```
 
-## Multiple Arguments
+## Multiple Arguments & No Echo
 We can use `.split(',')` to split whatever argument.
-```
+```python
 import cookie
 import math
 
