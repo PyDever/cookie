@@ -55,4 +55,8 @@ $ python test.py -n 5,6,7 -e True
 $ python test.py -n 5,6,7 -e False
 ```
 
+## Cookie & Crumble
+notice how we use `@cookie.cookie` and `@cookie.crumble`. the latter should be used
+for smaller application and the first should be used for more complex, less-scalable
+methods and functions.
 
