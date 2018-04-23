@@ -1,5 +1,7 @@
 
 # Usage Examples #
+
+## Hello, Cookie!
 Using cookie is literally easier than counting to one hundred. 
 Observe this simple example:
 ```python
@@ -14,30 +16,43 @@ def main (name=None, age=None):
 if __name__ == "__main__":
 	main()
 ```
-okay... now what? well, hop over to your copy
-of the shell and run your python file:
+now we can run our app the following ways:
 ```
-python my_cookie.py
+$ python test.py --name Kaleb -a 15
+$ python test.py --help
+$ python test.py -n Kaleb --age 15
+$ python test.py -n Kaleb -a 15
 ```
-you get nothing. huh. try running and asking for help.
-```
-python my_cookie.py --help
 
-Usage: my_cookie.py [-n NAME | --name NAME] 
-		    [-a AGE | --age AGE]
+## Multiple Arguments
+We can use `.split(',')` to split whatever argument.
 ```
-Wow! Cookie automatically generated a help page.
-You can also invoke this piece of art with:
-```
-python my_cookie.py -h
-```
-According to our help page, I need to use `-n` or `--name`
-to pass my name and `-a` or `--age` to pass my age.
-```
-python my_cookie.py --name Programmer -a 15
+import cookie
+import math
 
-Hello, Programmer.
-I see you are 15 years old.
+@cookie.crumble
+def main (numbers=None, ehco=None):
+	results = []
+	numbers = numbers.split(',')
+	for number in numbers:
+		number = int(number)
+		fact = math.factorial(number)
+		if echo == True:
+			print(fact)
+		else:
+			pass
+
+if __name__ == "__main__":
+	main()
 ```
-Wow! Just using the `@cookie.cookie` method decorator converts
-a standard python funciton into a command line argument parser!
+now we can run our app like this:
+```
+$ python test.py -n 5,6,7 -e True
+120
+720
+5040
+
+$ python test.py -n 5,6,7 -e False
+```
+
+
