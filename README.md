@@ -6,7 +6,9 @@
 
 **Version 1.0**
 
-Cookie is a simple argument parser for Python 3.
+Cookie is a simple argument parser for Python 3 that turns 
+functions into command line argument parsers without you even 
+knowing!
 
 ## installation
 ```
