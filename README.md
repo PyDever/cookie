@@ -30,5 +30,5 @@ see `dcos` for documentation.
 it needs work. contributions are welcome.
 
 ## changelog
-see `.idea` for the changelog.
+see `changelog.txt` for the changelog.
 
