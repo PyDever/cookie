@@ -1,7 +1,7 @@
 
 import cookie
 
-@cookie.crumble
+@cookie.cookie
 def main (name=None, number=None):
 
 	if name: 

@@ -111,7 +111,7 @@ def _usage_oneline(signature):
     return '{} {}'.format(optional_str, ordered_str)
 
 
-def crumble(fn):
+def cookie(fn):
     def inner():
         sig = inspect.signature(fn)
         try:

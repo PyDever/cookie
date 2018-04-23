@@ -20,7 +20,7 @@ see `docs` for more info.
 ```python
 import cookie
 
-@cookie.crumble
+@cookie.cookie
 def main (name=None):
   print("hello, " + name)
   
