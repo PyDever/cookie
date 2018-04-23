@@ -23,10 +23,10 @@ def main (name=None):
   
 main()
 ```
-see `docs` for more info.
+see `examples` for more info.
 
 ## documentation
-see `dcos` for documentation.
+see `docs` for documentation.
 it needs work. contributions are welcome.
 
 ## changelog
