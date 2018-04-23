@@ -5,8 +5,10 @@
 Cookie aims to be dynamic and contained. For this reason, it uses the standard
 Python 3 installation package file `setup.py`. This one file contains all the 
 installation information the package needs, pre-built! To install the entire
-Cookie package, run this command:
+Cookie package, run these commands:
 ```
+git clone https://github.com/PyDever/python-argument-parser.git
+cd python-argument-parser
 python setup.py install 
 ```
 
