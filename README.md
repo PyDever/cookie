@@ -16,7 +16,7 @@ see [docs](https://github.com/PyDever/python-argument-parser/blob/master/docs/in
 and see [examples](https://github.com/PyDever/python-argument-parser/tree/master/examples) for example files.
 
 ## documentation
-see [docs](https://github.com/PyDever/python-argument-parser/blob/master/docs/install.md) for all documentation.
+see [docs](https://github.com/PyDever/python-argument-parser/tree/master/docs) for all documentation.
 it needs work. contributions are welcome.
 
 ## changelog
