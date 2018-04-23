@@ -9,26 +9,14 @@
 Command line argument parsing while your sleeping!
 
 ## installation
-```
-$ pip install -r requires.txt
-$ python setup.py install
-```
-see `docs` for more info.
+see [docs](https://github.com/PyDever/python-argument-parser/blob/master/docs/install.md) for installation instructions.
 
 ## usage
-```python
-import cookie
-
-@cookie.cookie
-def main (name=None):
-  print("hello, " + name)
-  
-main()
-```
-see `examples` and `docs` for more info.
+see [examples](https://github.com/PyDever/python-argument-parser/blob/master/docs/install.md) for usage examples.
+also see [docs](https://github.com/PyDever/python-argument-parser/blob/master/docs/install.md) for usage instructions.
 
 ## documentation
-see `docs` for documentation.
+see [docs](https://github.com/PyDever/python-argument-parser/blob/master/docs/install.md) for all documentation.
 it needs work. contributions are welcome.
 
 ## changelog
