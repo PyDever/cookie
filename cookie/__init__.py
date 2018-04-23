@@ -137,3 +137,15 @@ def crumble(fn):
 
     return inner 
 
+def is_cookie(fn):
+    def get_decorators(function):
+    # If we have no func_closure, it means we are not wrapping any other functions.
+        if not function.func_closure:
+            return [function]
+            decorators = []
+            # Otherwise, we want to collect all of the recursive results for every closure we have.
+        for closure in function.func_closure:
+            decorators.extend(get_decorators(closure.cell_contents))
+        return [function] + decorators
+    if len(get_decorators(fn)) >= 0:
+        return True
