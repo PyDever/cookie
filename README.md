@@ -9,4 +9,4 @@
 Command line argument parsing while your sleeping!
 
 ## documentation
-the [documentation](https://github.com/PyDever/python-argument-parser/tree/master/docs) covers installation options and example usage 
+the [documentation](https://github.com/PyDever/python-argument-parser/blob/master/docs/README.md) covers installation options and example usage 
