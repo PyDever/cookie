@@ -1,3 +1,0 @@
-help not working, index doesnt exist so test
-to see if arg is help in run before parsing
-
