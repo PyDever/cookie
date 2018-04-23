@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='cookie',
-    version='0.3dev',
+    version='1.0dev',
     author='Kaleb R. Horvath',
     url='https://github.com/PyDever/python-argument-parser',
     packages=['cookie'],
