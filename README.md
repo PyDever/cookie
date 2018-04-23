@@ -4,7 +4,6 @@
 
 <img src="https://openclipart.org/download/249534/1464300474.svg" width=80><img src="https://www.python.org/static/community_logos/python-logo-master-v3-TM.png" width="230"/>
 
-<hr>
 Cookie is a simple argument parser for Python 3.
 
 ## installation
