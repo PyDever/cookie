@@ -124,3 +124,16 @@ def cookie(fn):
     return inner
 
 
+
+def crumble(fn):
+    def inner():
+        sig = inspect.signature(fn)
+        try:
+            ordered, optional = _resolve(sys.argv, sig)
+        except Exception:
+            print('Usage: ', sys.argv[0], _usage_oneline(sig))
+            return 
+        fn(*ordered, **optional)
+
+    return inner 
+
