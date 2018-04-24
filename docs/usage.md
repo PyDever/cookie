@@ -60,3 +60,16 @@ notice how we use `@cookie.cookie` and `@cookie.crumble`. the latter should be u
 for smaller application and the first should be used for more complex, less-scalable
 methods and functions.
 
+## Advanced Application
+in the `examples` folder, I have included an advanced example. it is a simple port scanner
+that allows you to pass and address and list of ports to be scanned.
+```python
+$ python port_scanner.py --address "127.0.0.1" --ports 22,34,80,443,667
+
+22 closed
+34 open
+80 closed
+443 closed
+667 open
+```
+
