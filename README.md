@@ -11,8 +11,8 @@ Command line argument parsing while your sleeping!
 ## what is Cookie?
 Cookie is a simple command line argument parser for Python 3. It uses
 decorators to parse arguments while your sleeping! The main focus of Cookie
-is to make command line applications without having to change your code
-to sute such a task. Just put a Cookie over a function and you're off!
+is to allow you to ***easily*** convert python projects into contained and scalable 
+command line applications in **seconds**.
 
 ## documentation
 The [documentation](https://github.com/PyDever/python-argument-parser/blob/master/docs/README.md) covers installation options and example usage.
