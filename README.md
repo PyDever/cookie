@@ -4,7 +4,7 @@
 
 <img src="https://openclipart.org/download/249534/1464300474.svg" width=80><img src="https://www.python.org/static/community_logos/python-logo-master-v3-TM.png" width="230"/>
 
-**Version 1.2**
+**Version 1.3**
 
 Command line argument parsing while your sleeping!
 

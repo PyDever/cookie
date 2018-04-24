@@ -140,13 +140,4 @@ class Cookie (object):
 
         return inner 
 
-app = Cookie(__name__)
-
-@app.cookie 
-def main(name=None):
-    if name is not None:
-        print("hello " + name)
-
-if __name__ == "__main__":
-    main()
 
