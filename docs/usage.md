@@ -62,8 +62,8 @@ methods and functions.
 
 ## Advanced Application
 in the `examples` folder, I have included an advanced example. it is a simple port scanner
-that allows you to pass and address and list of ports to be scanned.
-```python
+that allows you to pass an address and a list of ports to be scanned.
+```shell
 $ python port_scanner.py --address "127.0.0.1" --ports 22,34,80,443,667
 
 22 closed
