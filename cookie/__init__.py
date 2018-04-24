@@ -4,148 +4,149 @@ import sys
 from collections import defaultdict, namedtuple
 
 
-OptionalArg = namedtuple('OptionalArg', ['full', 'abbrev', 'default'])
+class Cookie (object):
 
+    def __init__ (self, name):
+        self.OptionalArg = namedtuple('OptionalArg', ['full', 'abbrev', 'default'])
+        self.name = name
 
-def _parse(args):
-    """Parse passed arguments from shell."""
+    def _parse(self, args):
+        """Parse passed arguments from shell."""
 
-    ordered = []
-    opt_full = dict()
-    opt_abbrev = dict()
+        ordered = []
+        opt_full = dict()
+        opt_abbrev = dict()
 
-    args = args + ['']  # Avoid out of range
-    i = 0
+        args = args + ['']  # Avoid out of range
+        i = 0
 
-    while i < len(args) - 1:
-        arg = args[i]
-        arg_next = args[i+1]
-        if arg.startswith('--'):
-            if arg_next.startswith('-'):
-                raise ValueError('{} lacks value'.format(arg))
+        while i < len(args) - 1:
+            arg = args[i]
+            arg_next = args[i+1]
+            if arg.startswith('--'):
+                if arg_next.startswith('-'):
+                    raise ValueError('{} lacks value'.format(arg))
+                else:
+                    opt_full[arg[2:]] = arg_next
+                    i += 2
+            elif arg.startswith('-'):
+                if arg_next.startswith('-'):
+                    raise ValueError('{} lacks value'.format(arg))
+                else:
+                    opt_abbrev[arg[1:]] = arg_next
+                    i += 2
             else:
-                opt_full[arg[2:]] = arg_next
-                i += 2
-        elif arg.startswith('-'):
-            if arg_next.startswith('-'):
-                raise ValueError('{} lacks value'.format(arg))
+                ordered.append(arg)
+                i += 1
+        
+        return ordered, opt_full, opt_abbrev
+
+
+    def _construct_ordered(self, params):
+        args = [key for key, arg in params.items() if arg.default == inspect._empty]
+        return args
+
+
+    def _construct_optional(self, params):
+        """Construct optional args' key and abbreviated key from signature."""
+
+        args = []
+        filtered = {key: arg.default for key, arg in params.items() if arg.default != inspect._empty}
+        for key, default in filtered.items():
+            arg = self.OptionalArg(full=key, abbrev=key[0].lower(), default=default)
+            args.append(arg)
+
+        args_full, args_abbrev = dict(), dict()
+
+        # Resolve conflicts
+        known_count = defaultdict(int)
+        for arg in args:
+            args_full[arg.full] = arg
+
+            if known_count[arg.abbrev] == 0:
+                args_abbrev[arg.abbrev] = arg
+            elif known_count[arg.abbrev] == 1:
+                new_abbrev = arg.abbrev.upper()
+                args_full[arg.full] = self.OptionalArg(full=arg.full, abbrev=new_abbrev, default=arg.default)
+                args_abbrev[new_abbrev] = args_full[arg.full]
             else:
-                opt_abbrev[arg[1:]] = arg_next
-                i += 2
-        else:
-            ordered.append(arg)
-            i += 1
-    
-    return ordered, opt_full, opt_abbrev
+                new_abbrev = arg.abbrev.upper() + str(known_count[arg.abbrev])
+                args_full[arg.full] = self.OptionalArg(full=arg.full, abbrev=new_abbrev, default=arg.default)
+                args_abbrev[new_abbrev] = args_full[arg.full]
+            known_count[arg.abbrev] += 1
+        return args_full, args_abbrev
 
 
-def _construct_ordered(params):
-    args = [key for key, arg in params.items() if arg.default == inspect._empty]
-    return args
+    def _resolve(self, args, signature):
+        ordered, opt_parsed_full, opt_parsed_abbrev = self._parse(args[1:])
 
-
-def _construct_optional(params):
-    """Construct optional args' key and abbreviated key from signature."""
-
-    args = []
-    filtered = {key: arg.default for key, arg in params.items() if arg.default != inspect._empty}
-    for key, default in filtered.items():
-        arg = OptionalArg(full=key, abbrev=key[0].lower(), default=default)
-        args.append(arg)
-
-    args_full, args_abbrev = dict(), dict()
-
-    # Resolve conflicts
-    known_count = defaultdict(int)
-    for arg in args:
-        args_full[arg.full] = arg
-
-        if known_count[arg.abbrev] == 0:
-            args_abbrev[arg.abbrev] = arg
-        elif known_count[arg.abbrev] == 1:
-            new_abbrev = arg.abbrev.upper()
-            args_full[arg.full] = OptionalArg(full=arg.full, abbrev=new_abbrev, default=arg.default)
-            args_abbrev[new_abbrev] = args_full[arg.full]
-        else:
-            new_abbrev = arg.abbrev.upper() + str(known_count[arg.abbrev])
-            args_full[arg.full] = OptionalArg(full=arg.full, abbrev=new_abbrev, default=arg.default)
-            args_abbrev[new_abbrev] = args_full[arg.full]
-        known_count[arg.abbrev] += 1
-    return args_full, args_abbrev
-
-
-def _resolve(args, signature):
-    ordered, opt_parsed_full, opt_parsed_abbrev = _parse(args[1:])
-
-    ordered_def = _construct_ordered(signature.parameters)
-    if len(ordered) != len(ordered_def):
-        raise Exception
-
-    opt_parsed = dict()
-    opt_parsed.update(opt_parsed_full)
-    opt_parsed.update(opt_parsed_abbrev)
-
-    opt_def_full, opt_def_abbrev = _construct_optional(signature.parameters)
-    optional = {o.full: o.default for o in opt_def_full.values()}
-    opt_def = dict()
-    opt_def.update(opt_def_full)
-    opt_def.update(opt_def_abbrev)
-
-    for key, val in opt_parsed.items():
-        if key not in opt_def:
+        ordered_def = self._construct_ordered(signature.parameters)
+        if len(ordered) != len(ordered_def):
             raise Exception
-        d = opt_def[key]
-        optional[d.full] = val
 
-    return ordered, optional
+        opt_parsed = dict()
+        opt_parsed.update(opt_parsed_full)
+        opt_parsed.update(opt_parsed_abbrev)
 
+        opt_def_full, opt_def_abbrev = self._construct_optional(signature.parameters)
+        optional = {o.full: o.default for o in opt_def_full.values()}
+        opt_def = dict()
+        opt_def.update(opt_def_full)
+        opt_def.update(opt_def_abbrev)
 
-def _usage_oneline(signature):
-    ordered = _construct_ordered(signature.parameters)
-    full, _ = _construct_optional(signature.parameters)
+        for key, val in opt_parsed.items():
+            if key not in opt_def:
+                raise Exception
+            d = opt_def[key]
+            optional[d.full] = val
 
-    ordered_str = ' '.join(name.upper() for name in ordered)
-    optional_str = ' '.join('[-{} {} | --{} {}]'.format(
-        opt.abbrev, opt.full.upper(), opt.full, opt.full.upper()) for opt in full.values())
-
-    return '{} {}'.format(optional_str, ordered_str)
-
-
-def cookie(fn):
-    def inner():
-        sig = inspect.signature(fn)
-        try:
-            ordered, optional = _resolve(sys.argv, sig)
-        except Exception:
-            print('Usage:', sys.argv[0], _usage_oneline(sig))
-            return
-        fn(*ordered, **optional)
-
-    return inner
+        return ordered, optional
 
 
+    def _usage_oneline(self, signature):
+        ordered = self._construct_ordered(signature.parameters)
+        full, _ = self._construct_optional(signature.parameters)
 
-def crumble(fn):
-    def inner():
-        sig = inspect.signature(fn)
-        try:
-            ordered, optional = _resolve(sys.argv, sig)
-        except Exception:
-            print('Usage: ', sys.argv[0], _usage_oneline(sig))
-            return 
-        fn(*ordered, **optional)
+        ordered_str = ' '.join(name.upper() for name in ordered)
+        optional_str = ' '.join('[-{} {} | --{} {}]'.format(
+            opt.abbrev, opt.full.upper(), opt.full, opt.full.upper()) for opt in full.values())
 
-    return inner 
+        return '{} {}'.format(optional_str, ordered_str)
 
-def is_cookie(fn):
-    def get_decorators(function):
-    # If we have no func_closure, it means we are not wrapping any other functions.
-        if not function.func_closure:
-            return [function]
-            decorators = []
-            # Otherwise, we want to collect all of the recursive results for every closure we have.
-        for closure in function.func_closure:
-            decorators.extend(get_decorators(closure.cell_contents))
-        return [function] + decorators
-    if len(get_decorators(fn)) >= 0:
-        return True
+
+    def cookie(self, fn):
+        def inner():
+            sig = inspect.signature(fn)
+            try:
+                ordered, optional = self._resolve(sys.argv, sig)
+            except Exception:
+                print('Usage:', sys.argv[0],self. _usage_oneline(sig))
+                return
+            fn(*ordered, **optional)
+
+        return inner
+
+
+
+    def crumble(self, fn):
+        def inner():
+            sig = inspect.signature(fn)
+            try:
+                ordered, optional = self._resolve(sys.argv, sig)
+            except Exception:
+                print('Usage: ', sys.argv[0], self._usage_oneline(sig))
+                return 
+            fn(*ordered, **optional)
+
+        return inner 
+
+app = Cookie(__name__)
+
+@app.cookie 
+def main(name=None):
+    if name is not None:
+        print("hello " + name)
+
+if __name__ == "__main__":
+    main()
+
