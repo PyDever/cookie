@@ -9,7 +9,7 @@ standard library. If you face issues, run this command.
 ```
 pip install distutils
 ```
-After you have confirmed that `setuptools` is installed, go ahead and download
+After you have confirmed that `distutils` is installed, go ahead and download
 the Cookie source code from github.
 ```
 git clone https://github.com/PyDever/cookie
