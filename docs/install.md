@@ -2,7 +2,8 @@
 # installing cookie
 <hr>
 
-### standard installation
+***Due to issues with PyPi, Cookie will not be pip installable for a while***
+# standard installation
 Cookie is designed to be scalable and contained. For this reason, I decided to use
 `distutils` as my installation method. `distutils` should be
 standard library. If you face issues, run this command.
