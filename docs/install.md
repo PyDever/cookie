@@ -14,7 +14,7 @@ python setup.py install
 ```
 
 ## running tests
-Cookie uses `pytet` and `setuptools` for this.
+Cookie uses `pytest` and `setuptools` for this.
 ```
 python setup.py test
 ```
