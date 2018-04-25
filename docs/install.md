@@ -4,10 +4,10 @@
 
 ### standard installation
 Cookie is designed to be scalable and contained. For this reason, I decided to use
-`setuptools` as my installation method. `setuptools` should be
+`distutils` as my installation method. `distutils` should be
 standard library. If you face issues, run this command.
 ```
-pip install setuptools
+pip install distutils
 ```
 After you have confirmed that `setuptools` is installed, go ahead and download
 the Cookie source code from github.
@@ -20,4 +20,10 @@ python setup.py build
 python setup.py install
 ```
 Now you can import `cookie` from anywhere on your machine.
+
+### remote installation
+For my foreign friends, feel free to access a pypi mirror.
+```
+pip install
+```
 
