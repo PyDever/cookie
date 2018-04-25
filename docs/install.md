@@ -1,6 +1,7 @@
 
 # installing cookie
 <hr>
+
 ### standard installation
 Cookie is designed to be scalable and contained. For this reason, I decided to use
 `setuptools` as my installation method. `setuptools` should be
