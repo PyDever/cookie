@@ -10,6 +10,11 @@ standard library. If you face issues, run this command.
 ```
 pip install setuptools
 ```
+Additionally, `setuptools` will be installed among other things if you
+run this simple command.
+```
+pip install -r requires.txt
+```
 After you have confirmed that `setuptools` is installed, go ahead and download
 the Cookie source code from github.
 ```
