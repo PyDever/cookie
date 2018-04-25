@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 
 setup(
     name='cookie',
@@ -7,7 +7,5 @@ setup(
     url='https://github.com/PyDever/cookie',
     packages=['cookie'],
     test_suite='tests.test',
-    license='BSD',
-    long_description=open('README.md').read(),
-)
+    license='BSD')
 
