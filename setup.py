@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='cookie',
-    version='1.3dev',
+    version='2.0dev',
     author='Kaleb R. Horvath',
     url='https://github.com/PyDever/cookie',
     packages=['cookie'],
