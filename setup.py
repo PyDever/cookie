@@ -6,6 +6,7 @@ setup(
     author='Kaleb R. Horvath',
     url='https://github.com/PyDever/cookie',
     packages=['cookie'],
+    test_suite='tests.test',
     license='BSD',
     long_description=open('README.md').read(),
 )
