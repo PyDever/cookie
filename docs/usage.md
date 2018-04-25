@@ -65,7 +65,6 @@ The second most important file is `setup.py`. This will make your project instal
 look someting like this.
 ```
 from setuptools import setup
-import os
 
 setup(
     name='cookie-app',
