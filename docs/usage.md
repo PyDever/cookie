@@ -2,80 +2,79 @@
 # Usage Examples #
 
 ## Hello, Cookie!
-Using cookie is literally easier than counting to one hundred. 
-Observe this simple example:
-```python
-import cookie
+Using Cookie is very easy. Here is a simple hello cookie example.
+```
+from cookie import Cookie
 
-@cookie.cookie
-def main (name=None, age=None):
-	if name and number:
-		print("Hello, " + name + ".")
-		print("I see you are " + age + " years old.")
+app = Cookie(__name__)
 
+@app.cookie
+def hello_cookie (name=None):
+	if name is not None:
+		print("Hello, " +name+"!")
+		print("My name is Cookie!")
+		
 if __name__ == "__main__":
-	main()
+	hello_cookie()
 ```
-now we can run our app the following ways:
+no we can easily run this from the command line.
 ```
-$ python test.py --name Kaleb -a 15
-$ python test.py --help
-$ python test.py -n Kaleb --age 15
-$ python test.py -n Kaleb -a 15
-```
+python hello_cookie.py --name kaleb
 
-## Multiple Arguments & No Echo
-We can use `.split(',')` to split whatever argument.
-```python
-import cookie
-import math
-
-@cookie.crumble
-def main (numbers=None, ehco=None):
-	results = []
-	numbers = numbers.split(',')
-	for number in numbers:
-		number = int(number)
-		fact = math.factorial(number)
-		if echo == True:
-			print(fact)
-		else:
-			pass
-
-if __name__ == "__main__":
-	main()
+Hello, Kaleb!
+My name is Cookie!
 ```
-now we can run our app like this:
+you can also just use `-n` for simplicity. Cookie automatically
+generates help pages as well. 
 ```
-$ python test.py -n 5,6,7 -e True
-120
-720
-5040
+python hello_cookie.py --help 
 
-$ python test.py -n 5,6,7 -e False
+Usage: hello_cookie.py [-n NAME | --name NAME]
+   		       [ -h | --help ]
 ```
 
-## Cookie & Crumble
-notice how we use `@cookie.cookie` and `@cookie.crumble`. the latter should be used
-for smaller application and the first should be used for more complex, less-scalable
-methods and functions.
-
-## Advanced Application
-in the `examples` folder, I have included an advanced example. it is a simple port scanner
-that allows you to pass an address and a list of ports to be scanned.
-```shell
-$ python port_scanner.py --address "127.0.0.1" --ports 22,34,80,443,667
-
-22 closed
-34 open
-80 closed
-443 closed
-667 open
+## Packaging your app!
+Cookie is designed to be scalable and contained. For this reason, the packaging
+process is very very simple. Go ahead and create a folder structure similar
+to this around your cookie app.
 ```
+cookie-app/
+	app/
+	|-------hello_cookie.py
+	|-------__init__.py
+	
+	tests/
+	|-------test.py
+	
+	AUTHORS
+	requires.txt
+	setup.py
+```
+The most important file here is `requires.txt`. This will tell
+the end user of your app what the dependencies are. This file should
+look something like this.
+```
+cookie
+example-package1
+example-package2
+```
+The second most important file is `setup.py`. This will make your project installable. This file should
+look someting like this.
+```
+from setuptools import setup
+import os
 
-## Conclusion
-the posibilities with this library are literally endless. you can not only
-do actions with the arguments, you can use them to control the actions like
-we did with `--echo`. You can make those arguments filenames and other things.
+setup(
+    name='cookie-app',
+    version='0.1dev',
+    author='your name here',
+    url='link to github repo',
+    packages=['app'],
+    test_suite='tests.test',
+    license='BSD')
+```
+After you have completed the above, go ahead and make your own 
+test in `tests/test.py`. Now that your structure is complete, put your
+package on github. 
 
-i encourage you to be creative with this module and use it to its full potential!
+[Here](https://github.com/PyDever/cookie-app) is a perfect example of a cookie app.
