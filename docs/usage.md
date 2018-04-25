@@ -3,7 +3,7 @@
 
 ## Hello, Cookie!
 Using Cookie is very easy. Here is a simple hello cookie example.
-```
+```python
 from cookie import Cookie
 
 app = Cookie(__name__)
