@@ -33,6 +33,9 @@ Usage: hello_cookie.py [-n NAME | --name NAME]
    		       [ -h | --help ]
 ```
 
+## Getting a list of arguments!
+TODO
+
 ## Packaging your app!
 Cookie is designed to be scalable and contained. For this reason, the packaging
 process is very very simple. Go ahead and create a folder structure similar
