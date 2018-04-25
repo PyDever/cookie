@@ -140,4 +140,6 @@ class Cookie (object):
 
         return inner 
 
+    def run (self, function_name):
+        function_name()
 
