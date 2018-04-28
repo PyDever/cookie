@@ -5,7 +5,7 @@
 Using Cookie is very easy. Here is a simple hello world function.
 ```python
 def hello (string=None):
-    print(string)
+    print("Hello, " + string + "!")
     
 if __name__ == "__main__":
     hello()
@@ -14,7 +14,7 @@ to turn it into a command line app with cookie, add the following above the func
 ```python
 from cookie import Cookie
 
-app = Cookie(__name___)
+app = Cookie(__name__)
 
 @app.cookie
 ...
