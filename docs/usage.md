@@ -2,20 +2,22 @@
 # Usage Examples #
 
 ## Hello, Cookie!
-Using Cookie is very easy. Here is a simple hello cookie example.
+Using Cookie is very easy. Here is a simple hello world function.
+```python
+def hello (string=None):
+    print(string)
+    
+if __name__ == "__main__":
+    hello()
+```
+to turn it into a command line app with cookie, add the following above the function:
 ```python
 from cookie import Cookie
 
-app = Cookie(__name__)
+app = Cookie(__name___)
 
 @app.cookie
-def hello_cookie (name=None):
-	if name is not None:
-		print("Hello, " +name+"!")
-		print("My name is Cookie!")
-		
-if __name__ == "__main__":
-	hello_cookie()
+...
 ```
 no we can easily run this from the command line.
 ```
@@ -79,4 +81,4 @@ After you have completed the above, go ahead and make your own
 test in `tests/test.py`. Now that your structure is complete, put your
 package on github. 
 
-[Here](https://github.com/PyDever/cookie-app) is a perfect example of a cookie app.
+[Here](https://github.com/PyDever/cookie-bitcoin) is a perfect example of a cookie app.
