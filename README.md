@@ -6,8 +6,6 @@
 
 **Version 2.0 is here!**
 
-Originally developed by [Takumi Sueda](https://github.com/puhitaku) and further developed by me!
-
 ## what is Cookie?
 Cookie is a simple command line argument parser for Python 3. It uses
 decorators to parse arguments while your sleeping! The main focus of Cookie
