@@ -2,7 +2,7 @@
 # installing cookie
 <hr>
 
-***Due to issues with PyPi, Cookie will not be pip installable for a while***
+***Due to issues with PyPi, Cookie will not be available through the pip command. instead, follow these directions.***
 ## quick installation
 Cookie is design to be scalable and contained. 
 ```
